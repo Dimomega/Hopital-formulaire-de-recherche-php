@@ -25,10 +25,15 @@ require_once 'ressources_communes.php'
             <img src="../images/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo hopital">
             Hopital
         </a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                Recherche d'un ou des patients
+            </li>
+        </ul>
     </nav>
     <div class="container d-flex flex-column h-100">
-        <div class="m-auto">
-            <h1 class="mt-5">Formulaire de recherche</h1>
+        <div class="mx-auto my-5 p-3 border">
+            <h1>Formulaire de recherche</h1>
 
             <?php
             
@@ -133,7 +138,7 @@ require_once 'ressources_communes.php'
 
                 // Liste déroulante pays
                 echo "<div class=\"form-group\">\n";
-                echo "<label>Pays</label>";
+                echo "<label>Pays de naissance</label>";
                 if (isset($_POST['pays'])) {
                     form_liste_deroulante_pays($bdd, $_POST['pays']);
                 } else {

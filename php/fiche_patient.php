@@ -26,9 +26,14 @@ require_once 'ressources_communes.php'
             <img src="../images/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo hopital">
             Hopital
         </a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                Fiche du patient
+            </li>
+        </ul>
     </nav>
     <div class="container d-flex flex-column h-100">
-        <div class="m-auto">
+        <div class="mx-auto my-5 px-5 py-3 border">
         <?php
         if(isset($_GET['insertion'])) {
             echo "<div class='insert-success'>Document inséré.</div>";
@@ -76,9 +81,9 @@ require_once 'ressources_communes.php'
 
             // Genre du patient pour information
             if ($patient['sexe'] == 'M') {
-                $genre = "Monsieur";
+                $genre = "Mr";
             } else {
-                $genre = "Madame";
+                $genre = "Mme";
             }
 
             $nom = strtoupper(htmlspecialchars($patient['nom'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING));
@@ -87,7 +92,7 @@ require_once 'ressources_communes.php'
             $_SESSION['prenom'] = $prenom;
 
             // Titre de la fiche
-            echo "<h1 class='my-3'>Fiche patient de $genre $nom $prenom</h1>\n";
+            echo "<h1>$genre $nom $prenom</h1>\n";
 
             echo "<ul class=\"list-group\">\n";
             // Code du patient
@@ -137,8 +142,8 @@ require_once 'ressources_communes.php'
 
         //
         function affiche_document($documents): void {
-            echo "<h3 class='my-3'>Document(s) du patient :</h3>\n";
-            echo "<p class='my-3'><a href='upload_document.php?code=".$_GET['code']."'>Ajouter un nouveau document à ce patient 📝.</a></p>";
+            echo "<h3 class='my-3'>Options pour document :</h3>\n";
+            echo "<p class='my-3'><a href='upload_document.php?code=".$_GET['code']."'>Ajouter un nouveau document.</a></p>";
 
             if ($documents && $documents->rowCount() > 0) {
                 echo '<table class="table table-striped table-hover">
@@ -189,7 +194,8 @@ require_once 'ressources_communes.php'
           else {
             echo "<p>Erreur : la page a été appelée sans l'identifiant du patient à afficher.</p>\n";
           }
-          echo "<p>Faire une <a href=\"recherche_patient.php\">Nouvelle recherche</a> de patient</p>\n";
+          // Renvoie vers le formulaire de recherche
+          echo "<p><a href=\"recherche_patient.php\">Retour</a></p>\n";
         
 
         session_destroy();
