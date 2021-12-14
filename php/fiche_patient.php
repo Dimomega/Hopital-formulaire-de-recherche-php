@@ -149,7 +149,7 @@ require_once 'ressources_communes.php'
                 echo '<table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Nom Document</th>
+                        <th scope="col">Document</th>
                         <th scope="col">Consulter</th>
                         <th scope="col">Télécharger</th>
                         <th scope="col">Envoyer par mail</th>
@@ -160,9 +160,9 @@ require_once 'ressources_communes.php'
                     $nom_doc = htmlspecialchars($document['nom'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING);
                     echo '<tr>
                         <td>'.$nom_doc.'</td>
-                        <td><a href="../ressources/'.$nom_doc.'" target="_blank">👁️</a></td>
-                        <td><a href="../ressources/'.$nom_doc.'" download>💾</a></td>
-                        <td><a href="mailto:example@example.com?subject=Envoi de document du patient '.$_SESSION['nom'].' '.$_SESSION['prenom'].'&body= Lien du document : C:/wamp64/www/Hopital/ressources/'.$nom_doc.'">📧</a></td>
+                        <td style="text-align: center"><a href="../ressources/'.$nom_doc.'" target="_blank"><i class="far fa-eye" style="color: black"></i></a></td>
+                        <td style="text-align: center"><a class="my-auto" href="../ressources/'.$nom_doc.'" download><i class="far fa-save" style="color: black"></i></a></td>
+                        <td style="text-align: center"><a href="mailto:example@example.com?subject=Envoi de document du patient '.$_SESSION['nom'].' '.$_SESSION['prenom'].'&body= Lien du document : C:/wamp64/www/Hopital/ressources/'.$nom_doc.'"><i class="far fa-envelope" style="color: black"></i></a></td>
                     </tr>';
                 }  
                 echo "</tbody>
@@ -200,5 +200,6 @@ require_once 'ressources_communes.php'
         ?>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/dcd6ace8e4.js" crossorigin="anonymous"></script>
 </body>
 </html>
