@@ -36,10 +36,10 @@ require_once 'ressources_communes.php'
         <div class="mx-auto my-5 px-5 py-3 border">
         <?php
         if(isset($_GET['insertion'])) {
-            echo "<div class='insert-success'>Document inséré.</div>";
+            echo "<div class='alert alert-success' role='alert'>Document bien inséré.</div>";
         }
 
-        //
+        // Recherche d'un patient à partir de son code
         function recherche_patient($bdd, $id) {
             $id = $bdd->quote($id);
             $requete = "SELECT patients.code, nom, prenom, date_naissance,
@@ -59,12 +59,12 @@ require_once 'ressources_communes.php'
             return $resultats;
         }
 
-        //
+        // Recherche d'un document à partir de son id
         function recherche_ressources($bdd, $id) {
             $id = $bdd->quote($id);
-            $requete = "SELECT id, reference_document.nom, patients_code
+            $requete = "SELECT id, reference_document.nom, code_patients
             FROM reference_document
-            INNER JOIN patients ON (patients.code = reference_document.patients_code)
+            INNER JOIN patients ON (patients.code = reference_document.code_patients)
             WHERE patients.code = $id;";
             try {
             $resultats = $bdd->query($requete);
@@ -117,11 +117,11 @@ require_once 'ressources_communes.php'
 
             // Genre
             echo "<li class=\"list-group-item\"><strong>Genre : </strong>"
-            . htmlspecialchars($patient['LibelleDuSexe'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING)."</li>\n";
+            . htmlspecialchars($patient['LibelleDuSexe'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>\n";
 
             // Motif d'admission
             echo "<li class=\"list-group-item\"><strong>Motif d'admission : </strong>"
-            . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING)."</li>";
+            . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>";
 
             // Date de première admission
             echo "<li class=\"list-group-item\"><strong>Date de première admission : </strong>"
@@ -143,7 +143,7 @@ require_once 'ressources_communes.php'
         //
         function affiche_document($documents): void {
             echo "<h3 class='my-3'>Options pour document :</h3>\n";
-            echo "<p class='my-3'><a href='upload_document.php?code=".$_GET['code']."'>Ajouter un nouveau document.</a></p>";
+            echo "<p class='my-3'><a href='document_patient.php?code=".$_GET['code']."'>Ajouter un nouveau document.</a></p>";
 
             if ($documents && $documents->rowCount() > 0) {
                 echo '<table class="table table-striped table-hover">
@@ -160,9 +160,9 @@ require_once 'ressources_communes.php'
                     $nom_doc = htmlspecialchars($document['nom'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING);
                     echo '<tr>
                         <td>'.$nom_doc.'</td>
-                        <td><a href="./resources/'.$nom_doc.'" target="_blank">👁️</a></td>
-                        <td><a href="./resources/'.$nom_doc.'" download>💾</a></td>
-                        <td><a href="mailto:example@example.com?subject=Envoi de document du patient '.$_SESSION['nom'].' '.$_SESSION['prenom'].'&body= Lien du document : '.__DIR__.'/resources/'.$nom_doc.'">📧</a></td>
+                        <td><a href="../ressources/'.$nom_doc.'" target="_blank">👁️</a></td>
+                        <td><a href="../ressources/'.$nom_doc.'" download>💾</a></td>
+                        <td><a href="mailto:example@example.com?subject=Envoi de document du patient '.$_SESSION['nom'].' '.$_SESSION['prenom'].'&body= Lien du document : C:/wamp64/www/Hopital/ressources/'.$nom_doc.'">📧</a></td>
                     </tr>';
                 }  
                 echo "</tbody>
@@ -189,19 +189,16 @@ require_once 'ressources_communes.php'
         
             // Si document présent
             affiche_document($ressources);
-          }
-          // Erreur de la page
-          else {
+        } else {
             echo "<p>Erreur : la page a été appelée sans l'identifiant du patient à afficher.</p>\n";
-          }
-          // Renvoie vers le formulaire de recherche
-          echo "<p><a href=\"recherche_patient.php\">Retour</a></p>\n";
+        }
         
+        // Renvoie vers le formulaire de recherche
+        echo "<p><a href=\"recherche_patient.php\">Retour</a></p>\n";
 
         session_destroy();
         ?>
         </div>
     </div>
-    
 </body>
 </html>

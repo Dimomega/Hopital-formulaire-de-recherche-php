@@ -274,6 +274,5 @@ require_once 'ressources_communes.php'
             </div>
         </div>
     </div>
-    
 </body>
 </html>

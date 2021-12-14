@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `reference_document` (
   `nom` varchar(500) DEFAULT NULL,
   `code_patients` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_patients` (`code_patients`)
+  KEY `FK_patients` (`code_patients`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
@@ -143,22 +143,11 @@ CREATE TABLE IF NOT EXISTS `reference_document` (
 --
 
 INSERT INTO `reference_document` (`id`, `nom`, `code_patients`) VALUES
-(1, '', 1),
-(2, '', 2),
-(3, '', 3),
-(4, '', 4),
-(5, '', 5),
-(6, '', 1),
-(7, '', 2),
-(9, '', 2),
-(10, '', 2),
-(11, '', 3),
-(12, '', 3),
-(13, '', 5),
-(14, '', 3),
-(15, '', 4),
-(16, '', 4);
-
+(1, 'patient1.jpg', 1),
+(2, 'patient2.jpg', 2),
+(3, 'patient3.jpg', 3),
+(4, 'patient4.jpg', 4),
+(5, 'patient5.jpg', 5);
 
 --
 -- Contraintes pour la table `patients`
