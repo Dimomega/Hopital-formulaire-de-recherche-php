@@ -1,5 +1,13 @@
+body {
+    background-color: rgb(202, 220, 238) !important;
+}
+
 ul {
     list-style: none;
+}
+
+th {
+    background-color: rgb(255, 255, 255);
 }
 
 #customFile .custom-file-input:lang(fr)::after {

@@ -32,7 +32,7 @@ require_once 'ressources_communes.php'
         </ul>
     </nav>
     <div class="container d-flex flex-column h-100">
-        <div class="mx-auto my-5 p-3 border">
+        <div class="mx-auto my-5 p-3 border border-dark">
             <h1>Formulaire de recherche</h1>
 
             <?php

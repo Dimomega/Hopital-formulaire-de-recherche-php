@@ -32,7 +32,7 @@ require_once 'ressources_communes.php'
         </ul>
     </nav>
     <div class="container d-flex flex-column h-100 mt-5">
-        <div class="m-auto my-5 px-5 py-3 border">
+        <div class="m-auto my-5 px-5 py-3 border border-dark">
             <h1>Nouveau document du patient</h1>
 
             <p class="mb-3">Taille maximum du fichier : <strong>10Mo</strong>. Fichiers autorisés : <strong>txt, pdf, jpg, jpeg, png</strong></p>

@@ -33,7 +33,7 @@ require_once 'ressources_communes.php'
         </ul>
     </nav>
     <div class="container d-flex flex-column h-100">
-        <div class="mx-auto my-5 px-5 py-3 border">
+        <div class="mx-auto my-5 px-5 py-3 border border-dark">
         <?php
         if(isset($_GET['insertion'])) {
             echo "<div class='alert alert-success' role='alert'>Document bien inséré.</div>";
@@ -96,35 +96,35 @@ require_once 'ressources_communes.php'
 
             echo "<ul class=\"list-group\">\n";
             // Code du patient
-            echo "<li class=\"list-group-item\"><strong>Code patient : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Code patient : </strong>"
             . $patient['code']."</li>";
             
             // Nom du patient
-            echo "<li class=\"list-group-item\"><strong>Nom : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Nom : </strong>"
             . $nom . "</li>\n";
 
             // Prénom du patient
-            echo "<li class=\"list-group-item\"><strong>Prénom : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Prénom : </strong>"
             . $prenom . "</li>\n";
 
             // Date de naissance du patient
-            echo "<li class=\"list-group-item\"><strong>Date de naissance : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Date de naissance : </strong>"
             . htmlspecialchars($date_naissance,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
             // Pays de naissance
-            echo "<li class=\"list-group-item\"><strong>Pays de naissance : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Pays de naissance : </strong>"
             . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
             // Genre
-            echo "<li class=\"list-group-item\"><strong>Genre : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Genre : </strong>"
             . htmlspecialchars($patient['LibelleDuSexe'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>\n";
 
             // Motif d'admission
-            echo "<li class=\"list-group-item\"><strong>Motif d'admission : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Motif d'admission : </strong>"
             . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>";
 
             // Date de première admission
-            echo "<li class=\"list-group-item\"><strong>Date de première admission : </strong>"
+            echo "<li class=\"list-group-item mb-3\"><strong>Date de première admission : </strong>"
             . htmlspecialchars($date_prem_entree,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
             // Posséssion d'un numéro de sécurité sociale ou non.
