@@ -18,6 +18,12 @@ require_once 'ressources_communes.php'
     <!-- Boostrap -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
+    <!-- FontAwersome -->
+    <link href="../icons/css/all.css" rel="stylesheet">
+    <link href="../icons/css/fontawesome.css" rel="stylesheet">
+    <link href="../icons/css/brands.css" rel="stylesheet">
+    <link href="../icons/css/solid.css" rel="stylesheet">
+
     <title>Fiche patient</title>
 </head>
 <body>
@@ -200,6 +206,11 @@ require_once 'ressources_communes.php'
         ?>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/dcd6ace8e4.js" crossorigin="anonymous"></script>
+    
+    <!-- FontAwersome JS -->
+    <script defer src="../icons/js/all.js"></script>
+    <script defer src="../icons/js/brands.js"></script>
+    <script defer src="../icons/js/solid.js"></script>
+    <script defer src="../icons/js/fontawesome.js"></script>
 </body>
 </html>
