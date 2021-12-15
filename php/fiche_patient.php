@@ -127,7 +127,7 @@ require_once 'ressources_communes.php'
 
             // Motif d'admission
             echo "<li class=\"list-group-item mb-3\"><strong>Motif d'admission : </strong>"
-            . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>";
+            . htmlspecialchars($patient['LibelleDuMotif'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>";
 
             // Date de première admission
             echo "<li class=\"list-group-item mb-3\"><strong>Date de première admission : </strong>"
