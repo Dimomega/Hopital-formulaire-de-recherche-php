@@ -39,7 +39,7 @@ Pour la réalisation de ce projet plusieurs technologies ont été utilisées.
 ----
 ### Installation du projet
 
-Lors de l'installation de WampServer, un répertoire <strong>www</strong> a été automatiquement créé. Généralement à l'adresse <strong>C:\wamp64\www\</strong>.
+Lors de l'installation de WampServer, un répertoire <strong>www</strong> a été automatiquement créé. Généralement à l'adresse <strong> C:\wamp64\www\ </strong>.
 
 Pour utiliser l'application web, après avoir téléchargé le fichier zip <strong>Hopital</strong>, le déziper dans le répertoire dans le répertoire <strong>www</strong>. 
 
