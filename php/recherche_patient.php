@@ -102,7 +102,7 @@ require_once 'ressources_communes.php'
             // Création d'une liste déroulante dynamique pour sélectionner une année. 
             function form_liste_deroulante_annee($liste, $annee_min, $annee_max, $selected_year = null): void {
                 $liste = htmlspecialchars($liste,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING);
-                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante.
+                echo "<select class=\"form-control\" name=\"$liste\">\n"; // Balise select html pour une liste déroulante.
                 echo "<option value=\"\">Indifférent</option>\n"; // La premiere valeur par défaut vaut indifférent.
 
                 // Option de selection des années.
@@ -180,14 +180,14 @@ require_once 'ressources_communes.php'
                 $erreur = "";
                 if (!empty($_POST['nom_patient']))
                     if (!ctype_alnum(trim($_POST['nom_patient'])))
-                    $erreur .= "<p style='color:red;'>Le nom du patient ne doit pas contenir de caratères spéciaux.</p>\n";
+                    $erreur .= "<div class='alert alert-danger' style='color:red;'>Le nom du patient ne doit pas contenir de caratères spéciaux.</div>\n";
 
 
                 // Première date < Deuxième date.
                 if (!empty($_POST['annee_debut'])) {
                     if (!empty($_POST['annee_fin'])) {
                         if ($_POST['annee_debut'] > $_POST['annee_fin']) {
-                            $erreur .= "<p style='color:red;'>La première date doit être inférieur à la deuxième.</p>\n";
+                            $erreur .= "<div class='mt-3 alert alert-danger' style='color:red;'>La première date doit être inférieur à la deuxième.</div>\n";
                         }
                     }
                 }
@@ -219,12 +219,12 @@ require_once 'ressources_communes.php'
 
                 if (!empty($_POST['annee_debut'])) {
                     $annee_debut = $bdd->quote($_POST['annee_debut']);
-                    $requete .= "AND YEAR(date_naissance) >= $annee_debut ";
+                    $requete .= "AND YEAR(date_naissance) >= $annee_debut";
                 }
 
                 if (!empty($_POST['annee_fin'])) {
                     $annee_fin = $bdd->quote($_POST['annee_fin']);
-                    $requete .= "AND YEAR(date_naissance) <= $annee_fin ";
+                    $requete .= "AND YEAR(date_naissance) <= $annee_fin";
                 }
 
                 $requete .= "ORDER BY nom, prenom ;";
