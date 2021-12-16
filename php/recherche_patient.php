@@ -73,7 +73,7 @@ require_once 'ressources_communes.php'
 
             // Création d'une liste déroulante dynamique pour sélectionner un pays.
             function form_liste_deroulante_pays($bdd, $selected_pays = null): void {
-                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante.
+                echo "<select class=\"form-control\" name=\"pays\">\n"; // Balise select html pour une liste déroulante.
                 echo "<option value=\"\">Indifférent</option>\n"; // La premiere valeur par défaut vaut indifférent.
                 
                 // Requête SQL pour récupérer les données de la table PAYS.
