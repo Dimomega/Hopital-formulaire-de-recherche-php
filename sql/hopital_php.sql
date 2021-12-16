@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `hopital_php`
+-- Base de données : `hopital_php`.
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `motifs`
+-- Structure de la table `motifs`.
 --
 
 DROP TABLE IF EXISTS `motifs`;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `motifs` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `motifs`
+-- Déchargement des données de la table `motifs`.
 --
 
 INSERT INTO `motifs` (`code`, `libelle`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `motifs` (`code`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `patients`
+-- Structure de la table `patients`.
 --
 
 DROP TABLE IF EXISTS `patients`;
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `patients`
+-- Déchargement des données de la table `patients`.
 --
 
 INSERT INTO `patients` (`code`, `nom`, `prenom`, `sexe`, `date_naissance`, `num_sec_soc`, `code_pays`, `date_prem_entree`, `code_motifs`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `patients` (`code`, `nom`, `prenom`, `sexe`, `date_naissance`, `num_
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pays`
+-- Structure de la table `pays`.
 --
 
 DROP TABLE IF EXISTS `pays`;
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `pays`
+-- Déchargement des données de la table `pays`.
 --
 
 INSERT INTO `pays` (`code`, `libelle`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `pays` (`code`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sexe`
+-- Structure de la table `sexe`.
 --
 
 DROP TABLE IF EXISTS `sexe`;
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `sexe` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `sexe`
+-- Déchargement des données de la table `sexe`.
 --
 
 INSERT INTO `sexe` (`code`, `libelle`) VALUES
@@ -126,7 +126,7 @@ COMMIT;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reference_document`
+-- Structure de la table `reference_document`.
 --
 
 DROP TABLE IF EXISTS `reference_document`;
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `reference_document` (
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `reference_document`
+-- Déchargement des données de la table `reference_document`.
 --
 
 INSERT INTO `reference_document` (`id`, `nom`, `code_patients`) VALUES
@@ -150,7 +150,7 @@ INSERT INTO `reference_document` (`id`, `nom`, `code_patients`) VALUES
 (5, 'patient5.jpg', 5);
 
 --
--- Contraintes pour la table `patients`
+-- Contraintes pour la table `patients`.
 --
 ALTER TABLE `patients`
   ADD CONSTRAINT `fk_patients_sexe` FOREIGN KEY (`sexe`) REFERENCES `sexe` (`code`) ON DELETE NO ACTION ON UPDATE NO ACTION,

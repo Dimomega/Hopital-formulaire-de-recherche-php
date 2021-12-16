@@ -5,16 +5,16 @@ require_once 'ressources_communes.php'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Meta -->
+    <!-- Meta. -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Recherche d'un patient dans un hopital">
 
-    <!-- Css -->
+    <!-- Css. -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-    <!-- Boostrap -->
+    <!-- Bootstrap. -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
     <title>Recherche patient</title>
@@ -27,7 +27,7 @@ require_once 'ressources_communes.php'
         </a>
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                Recherche d'un ou des patients
+                Recherche de(s) patient(s)
             </li>
         </ul>
     </nav>
@@ -37,16 +37,16 @@ require_once 'ressources_communes.php'
 
             <?php
             
-            // Fonction qui renvoie l'année actuelle
+            // Fonction qui renvoie l'année actuelle.
             function annee_actuelle(): int {
                 $date_actuelle = getdate();
                 return $date_actuelle['year'];
             }
 
-            // Création liste déroulante dynamique des motifs
+            // Création d'une liste déroulante dynamique pour sélectionner un motif.
             function form_liste_deroulante_motifs($bdd, $selected_motif = null): void {
-                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante
-                echo "<option value=\"\">Indifférent</option>\n"; // 1er Option qui vaut indifférent
+                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante.
+                echo "<option value=\"\">Indifférent</option>\n"; // La premiere valeur par défaut vaut indifférent.
                 
                 // Requête SQL pour récupérer les données de la table motif
                 $requete = "SELECT code, libelle FROM motifs ORDER BY libelle ASC;";
@@ -67,16 +67,16 @@ require_once 'ressources_communes.php'
                     }
                 }
 
-                unset($resultats); // Destruction du jeu de résultats de la requête
+                unset($resultats); // Destruction du jeu de résultats de la requête.
                 echo "</select>\n";
             }
 
-            // Création liste déroulante dynamique des pays
+            // Création d'une liste déroulante dynamique pour sélectionner un pays.
             function form_liste_deroulante_pays($bdd, $selected_pays = null): void {
-                echo "<select class=\"form-control\" name=\"pays\">\n"; // Balise select html pour une liste déroulante
-                echo "<option value=\"\">Indifférent</option>\n"; // 1er Option qui vaut indifférent
+                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante.
+                echo "<option value=\"\">Indifférent</option>\n"; // La premiere valeur par défaut vaut indifférent.
                 
-                // Requête SQL pour récupérer les données de la table motif
+                // Requête SQL pour récupérer les données de la table PAYS.
                 $requete = "SELECT code, libelle FROM pays ORDER BY libelle ASC;";
                 try {
                     $resultats = $bdd->query($requete);
@@ -95,16 +95,17 @@ require_once 'ressources_communes.php'
                     }
                 }
 
-                unset($resultats); // Destruction du jeu de résultats de la requête
+                unset($resultats); // Destruction du jeu de résultats de la requête.
                 echo "</select>\n";
             }
 
-            // Création liste déroulante dynamique des années
+            // Création d'une liste déroulante dynamique pour sélectionner une année. 
             function form_liste_deroulante_annee($liste, $annee_min, $annee_max, $selected_year = null): void {
                 $liste = htmlspecialchars($liste,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING);
-                echo "<select class=\"form-control\" value=\"$liste\">\n"; // Balise select html pour une liste déroulante
-                echo " <option value=\"\">Indifférent</option>\n"; // 1er Option qui vaut indifférent
-                // Option de selection des années
+                echo "<select class=\"form-control\" name=\"motif\">\n"; // Balise select html pour une liste déroulante.
+                echo "<option value=\"\">Indifférent</option>\n"; // La premiere valeur par défaut vaut indifférent.
+
+                // Option de selection des années.
                 for ($annee = $annee_max; $annee >= $annee_min; $annee--) {
                     if ($annee == $selected_year) {
                     echo " <option value='$annee' selected=\"selected\">$annee</option>\n";
@@ -115,20 +116,20 @@ require_once 'ressources_communes.php'
                 echo "</select>\n";
             }
 
-            // Création du formulaire de recherche du patient
+            // Création du formulaire de recherche du patient.
             function creat_form($bdd): void {
-                // Balise formulaire
+                // Balise du formulaire.
                 echo "<form method=\"post\">\n";
 
-                // Input text pour le nom
+                // Input text pour le nom.
                 echo "<div class=\"form-group\">";
                 echo "<label for='nom_patient'>Nom du patient</label>\n";
                 echo '<input class="form-control" type="text" id="nom_patient" name="nom_patient" placeholder="Nom du patient" style="text-transform: uppercase;" value="'. (isset($_POST['nom_patient']) ? htmlspecialchars($_POST['nom_patient'], ENT_COMPAT, "UTF-8") : '') . '">';
                 echo "</div>";
 
-                // Liste déroulante motifs
+                // Liste déroulante pour sélectionner un motif.
                 echo "<div class=\"form-group\">\n";
-                echo "<label>Motifs d'admission</label>";
+                echo "<label>Motif d'admission</label>";
                 if (isset($_POST['motif'])) {
                     form_liste_deroulante_motifs($bdd, $_POST['motif']);
                 } else {
@@ -136,9 +137,9 @@ require_once 'ressources_communes.php'
                 }
                 echo "</div>\n";
 
-                // Liste déroulante pays
+                // Liste déroulante pour sélectioner un pays.
                 echo "<div class=\"form-group\">\n";
-                echo "<label>Pays de naissance</label>";
+                echo "<label>Pays</label>";
                 if (isset($_POST['pays'])) {
                     form_liste_deroulante_pays($bdd, $_POST['pays']);
                 } else {
@@ -146,9 +147,9 @@ require_once 'ressources_communes.php'
                 }
                 echo "</div>\n";
 
-                // Liste déroulante de l'année (minimum, maximum)
+                // Liste déroulante pour sélectioner la date de naissance dans un intervalle de deux années (minimum, maximum).
                 echo "<div class=\"form-group\">\n";
-                echo "<label>Année de début de recherche :</label>\n";
+                echo "<label>Première date de l'intervalle de l'année de naissance :</label>\n";
                 $annee_actuelle = annee_actuelle();
                 if (isset($_POST['annee_debut'])) {
                     form_liste_deroulante_annee('annee_debut', ANNEE_MINI, $annee_actuelle, $_POST['annee_debut']);
@@ -157,7 +158,7 @@ require_once 'ressources_communes.php'
                 }
                 echo "</div>\n";
                 echo "<div class=\"form-group\">\n";
-                echo "<label>Année de fin de recherche :</label>";
+                echo "<label>Deuxieme date de l'intervalle de l'année de naissance :</label>";
                 $annee_actuelle = annee_actuelle();
                 if (isset($_POST['annee_fin'])) {
                     form_liste_deroulante_annee('annee_fin', ANNEE_MINI, $annee_actuelle, $_POST['annee_fin']);
@@ -166,7 +167,7 @@ require_once 'ressources_communes.php'
                 }
                 echo "</div>\n";
 
-                // Bouton submit rechercher
+                // Bouton de recherche multicritères.
                 echo " <div>\n";
                 echo " <input class='btn btn-primary' type=\"submit\" name=\"recherche\" value=\"Rechercher\">\n";
                 echo " </div>\n";
@@ -174,7 +175,7 @@ require_once 'ressources_communes.php'
                 echo "</form>\n";
             }
 
-            // Vérification des valeurs pour validation du formulaire
+            // Vérification des valeurs pour validation du formulaire.
             function valide_form(): string {
                 $erreur = "";
                 if (!empty($_POST['nom_patient']))
@@ -182,11 +183,11 @@ require_once 'ressources_communes.php'
                     $erreur .= "<p style='color:red;'>Le nom du patient ne doit pas contenir de caratères spéciaux.</p>\n";
 
 
-                // Année de début < année de fin
+                // Première date < Deuxième date.
                 if (!empty($_POST['annee_debut'])) {
                     if (!empty($_POST['annee_fin'])) {
                         if ($_POST['annee_debut'] > $_POST['annee_fin']) {
-                            $erreur .= "<p style='color:red;'>La date de début doit être inférieur à la date de la fin.</p>\n";
+                            $erreur .= "<p style='color:red;'>La première date doit être inférieur à la deuxième.</p>\n";
                         }
                     }
                 }
@@ -194,7 +195,7 @@ require_once 'ressources_communes.php'
                 return $erreur;
             }
 
-            // Recherche les patients présent dans la base de donnée par rapport à la demande faite dans le formulaire
+            // Recherche le patient présent dans la base de donnée en fonction de la demande du formulaire.
             function recherche_patients_bdd($bdd) {
                 $requete = "SELECT patients.code, nom, prenom
                     FROM patients
@@ -228,7 +229,7 @@ require_once 'ressources_communes.php'
 
                 $requete .= "ORDER BY nom, prenom ;";
 
-                // Exécution de la requête sur la base de données
+                // Exécution de la requête sur la base de données.
                 try {
                     $resultats = $bdd->query($requete);
                 } catch (PDOException $e) {

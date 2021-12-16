@@ -5,16 +5,16 @@ require_once 'ressources_communes.php'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Meta -->
+    <!-- Meta. -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Document d'un patient dans un hopital">
 
-    <!-- Css -->
+    <!-- Css. -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-    <!-- Boostrap -->
+    <!-- Bootstrap. -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
     <title>Recherche patient</title>
@@ -35,14 +35,14 @@ require_once 'ressources_communes.php'
         <div class="m-auto my-5 px-5 py-3 border border-dark">
             <h1>Nouveau document du patient</h1>
 
-            <p class="mb-3">Taille maximum du fichier : <strong>10Mo</strong>. Fichiers autorisés : <strong>txt, pdf, jpg, jpeg, png</strong></p>
+            <p class="mb-3">Taille maximum du fichier : <strong>10Mo</strong>. Fichiers autorisés : <strong>txt, pdf, jpg, jpeg, png.</strong></p>
 
             <form action="document_patient.php?code=<?php echo $_GET['code'] ?>" method="POST" enctype="multipart/form-data">
                 <legend>Ajouter un fichier pour le patient n°<?php echo $_GET['code'] ?></legend>
 
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" name="myInput" id="myInput" aria-describedby="myInput">
-                    <label class="custom-file-label" for="myInput">Sélectionner un fichier</label>
+                    <label class="custom-file-label" for="myInput">Sélectionner un fichier...</label>
                 </div>
 
                 <input class="btn btn-primary mb-3" type="submit" value="Enregistrer">
@@ -52,17 +52,17 @@ require_once 'ressources_communes.php'
             if(isset($_FILES['myInput'])) {
                 $file = $_FILES['myInput'];
 
-                // Propriétés du fichier
+                // Propriétés du fichier.
                 $file_name = $file['name'];
                 $file_tmp = $file['tmp_name'];
                 $file_size = $file['size'];
                 $file_error = $file['error'];
 
-                // Séparation nom et extension
+                // Séparation du nom et de l'extension.
                 $file_ext = explode('.', $file_name);
-                // Extension du fichier
+                // Extension du fichier.
                 $file_ext = strtolower(end($file_ext));
-                // Extensions autorisés
+                // Extensions autorisées.
                 $allowed = array('txt','pdf','jpg','jpeg','png', 'TXT', 'PDF', 'JPG', 'JPEG', 'PNG');
 
                 if(in_array($file_ext, $allowed) ) {
@@ -73,10 +73,10 @@ require_once 'ressources_communes.php'
                                 if(move_uploaded_file($file_tmp, $file_destination) && save_file($file_name)) {
                                     header('Location:fiche_patient.php?code='.$_GET['code'].'&insertion=true');
                                 } else {
-                                    echo "<p class='erreur'>Echec insertion du fichier.</p>";
+                                    echo "<p class='erreur'>Echec de l'insertion du fichier.</p>";
                                 }
                             } else {
-                                echo "<p class='erreur'>Un fichier du même nom est déjà existant.</p>";
+                                echo "<p class='erreur'>Un fichier du même nom est existe déjà .</p>";
                             }
                         } else {
                             echo "<p class='erreur'>Le fichier est trop lourd.</p>";
@@ -85,11 +85,11 @@ require_once 'ressources_communes.php'
                         echo "<p class='erreur'>Erreur lors de l'insertion.</p>";
                     }
                 } else {
-                    echo "<p class='erreur'>Fichier comportant une extension non autorisé.</p>";
+                    echo "<p class='erreur'>Fichier comportant une extension non autorisée.</p>";
                 }
             }
 
-            // Vérifie si 2 fichiers ont le même nom
+            // Vérifie si deux fichiers ont le même nom.
             function check_same_name_file($file_name): bool {
                 $bdd = PDO_connecte_MySQL();
                 $requete = "SELECT nom FROM reference_document;";
@@ -111,7 +111,7 @@ require_once 'ressources_communes.php'
                 return true;
             }
 
-            // Sauvegarde le fichier de l'utilisateur
+            // Sauvegarde du fichier de l'utilisateur.
             function save_file($file_name): bool {
                 $code = intval($_GET['code']);
             
@@ -133,7 +133,7 @@ require_once 'ressources_communes.php'
         </div>
     </div>
 
-    <!-- JS -->
+    <!-- JS. -->
     <script src="../js/main.js"></script>
 </body>
 </html>

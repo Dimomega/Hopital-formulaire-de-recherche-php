@@ -6,25 +6,25 @@ require_once 'ressources_communes.php'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Meta -->
+    <!-- Meta. -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Fiche d'un patient dans un hopital">
 
-    <!-- Css -->
+    <!-- Css. -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-    <!-- Boostrap -->
+    <!-- Bootstrap. -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
-    <!-- FontAwersome -->
+    <!-- FontAwersome. -->
     <link href="../icons/css/all.css" rel="stylesheet">
     <link href="../icons/css/fontawesome.css" rel="stylesheet">
     <link href="../icons/css/brands.css" rel="stylesheet">
     <link href="../icons/css/solid.css" rel="stylesheet">
 
-    <title>Fiche patient</title>
+    <title>Fiche du patient</title>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
@@ -45,7 +45,7 @@ require_once 'ressources_communes.php'
             echo "<div class='alert alert-success' role='alert'>Document bien inséré.</div>";
         }
 
-        // Recherche d'un patient à partir de son code
+        // Recherche d'un patient à partir de son code.
         function recherche_patient($bdd, $id) {
             $id = $bdd->quote($id);
             $requete = "SELECT patients.code, nom, prenom, date_naissance,
@@ -65,7 +65,7 @@ require_once 'ressources_communes.php'
             return $resultats;
         }
 
-        // Recherche d'un document à partir de son id
+        // Recherche d'un document à partir de son id.
         function recherche_ressources($bdd, $id) {
             $id = $bdd->quote($id);
             $requete = "SELECT id, reference_document.nom, code_patients
@@ -80,14 +80,14 @@ require_once 'ressources_communes.php'
             return $resultats;
         }
 
-        // Affichage du détail de la fiche du patient
+        // Affichage du détail de la fiche du patient.
         function affiche_details_patient($patient) {
             $date_naissance = formateDate($patient['date_naissance']);
             $date_prem_entree = formateDate($patient['date_prem_entree']);
 
-            // Genre du patient pour information
+            // Genre du patient.
             if ($patient['sexe'] == 'M') {
-                $genre = "Mr";
+                $genre = "M.";
             } else {
                 $genre = "Mme";
             }
@@ -97,43 +97,43 @@ require_once 'ressources_communes.php'
             $_SESSION['nom'] = $nom;
             $_SESSION['prenom'] = $prenom;
 
-            // Titre de la fiche
-            echo "<h1>$genre $nom $prenom</h1>\n";
+            // Titre de la fiche. Indiquant le genre, le nom et le prenom du patient. 
+            echo "<h1 style='text-align: center'>$genre $nom $prenom</h1>\n";
 
             echo "<ul class=\"list-group\">\n";
-            // Code du patient
-            echo "<li class=\"list-group-item mb-3\"><strong>Code patient : </strong>"
+            // Code du patient.
+            echo "<li class=\"list-group-item mb-3\"><strong>Numéro du patient : </strong>"
             . $patient['code']."</li>";
             
-            // Nom du patient
+            // Nom du patient.
             echo "<li class=\"list-group-item mb-3\"><strong>Nom : </strong>"
             . $nom . "</li>\n";
 
-            // Prénom du patient
+            // Prénom du patient.
             echo "<li class=\"list-group-item mb-3\"><strong>Prénom : </strong>"
             . $prenom . "</li>\n";
 
-            // Date de naissance du patient
+            // Date de naissance du patient.
             echo "<li class=\"list-group-item mb-3\"><strong>Date de naissance : </strong>"
             . htmlspecialchars($date_naissance,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
-            // Pays de naissance
-            echo "<li class=\"list-group-item mb-3\"><strong>Pays de naissance : </strong>"
+            // Pays.
+            echo "<li class=\"list-group-item mb-3\"><strong>Pays : </strong>"
             . htmlspecialchars($patient['LibelleDuPays'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
-            // Genre
+            // Genre.
             echo "<li class=\"list-group-item mb-3\"><strong>Genre : </strong>"
             . htmlspecialchars($patient['LibelleDuSexe'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>\n";
 
-            // Motif d'admission
+            // Motif d'admission.
             echo "<li class=\"list-group-item mb-3\"><strong>Motif d'admission : </strong>"
             . htmlspecialchars($patient['LibelleDuMotif'],HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING). "</li>";
 
-            // Date de première admission
+            // Date de première admission.
             echo "<li class=\"list-group-item mb-3\"><strong>Date de première admission : </strong>"
             . htmlspecialchars($date_prem_entree,HTMLSPECIALCHARS_FLAGS,HTMLSPECIALCHARS_ENCODING) . "</li>\n";
 
-            // Posséssion d'un numéro de sécurité sociale ou non.
+            // Possession d'un numéro de sécurité sociale ou non.
             if ($patient['num_sec_soc']) {
             $num_sec_soc = $patient['num_sec_soc'];
             } else {
@@ -146,16 +146,15 @@ require_once 'ressources_communes.php'
             echo "</ul>\n";
         }
 
-        //
         function affiche_document($documents): void {
             echo "<h3 class='my-3'>Options pour document :</h3>\n";
-            echo "<p class='my-3'><a href='document_patient.php?code=".$_GET['code']."'>Ajouter un nouveau document.</a></p>";
+            echo "<p class='my-3'><a href='document_patient.php?code=".$_GET['code']."'>Veuillez ajouter un nouveau document.</a></p>";
 
             if ($documents && $documents->rowCount() > 0) {
                 echo '<table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Document</th>
+                        <th scope="col">Nom du document</th>
                         <th scope="col">Consulter</th>
                         <th scope="col">Télécharger</th>
                         <th scope="col">Envoyer par mail</th>
@@ -174,32 +173,32 @@ require_once 'ressources_communes.php'
                 echo "</tbody>
                 </table>";
             } else {
-                echo "<p>Aucun document sur le patient.</p>\n";
+                echo "<p>Il n'existe pas de document pour ce patient.</p>\n";
             }
         }
 
         if (!empty($_GET['code'])) {
-            // Lecture des informations sur le patient souhaité
+            // Lecture des informations sur le patient souhaité.
             $bdd = PDO_connecte_MySQL();
             $patient = recherche_patient($bdd, $_GET['code']);
             $ressources = recherche_ressources($bdd, $_GET['code']);
             unset($bdd);
             
-            // Affichage des détails
+            // Affichage des détails.
             if ($patient && $patient->rowCount() > 0) {
               affiche_details_patient($patient->fetch(PDO::FETCH_ASSOC));
               unset($patient);
             } else {
-              echo "<p>Aucun patient ne correspond.</p>\n";
+              echo "<p>Aucun patient ne correspond à cette recherche.</p>\n";
             }
         
-            // Si document présent
+            // Si le document est présent.
             affiche_document($ressources);
         } else {
             echo "<p>Erreur : la page a été appelée sans l'identifiant du patient à afficher.</p>\n";
         }
         
-        // Renvoie vers le formulaire de recherche
+        // Renvoie vers le formulaire de recherche.
         echo "<p><a href=\"recherche_patient.php\">Retour</a></p>\n";
 
         session_destroy();
@@ -207,7 +206,7 @@ require_once 'ressources_communes.php'
         </div>
     </div>
     
-    <!-- FontAwersome JS -->
+    <!-- FontAwersome JS. -->
     <script defer src="../icons/js/all.js"></script>
     <script defer src="../icons/js/brands.js"></script>
     <script defer src="../icons/js/solid.js"></script>
